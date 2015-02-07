@@ -22,6 +22,11 @@
 
     <link rel="stylesheet" href="css/popup.css" />
 
+    <!-- JQuery - downloaded from http://jquery.com/download -->
+    <script src="external/jquery/jquery-2.1.3.min.js"></script>
+    <script src="external/jquery-ui-1.11.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="external/jquery-ui-1.11.2/jquery-ui.css" />
+
     <!-- Bootstrap - downloaded from http://getbootstrap.com/getting-started -->
     <link href="external/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="external/bootstrap/navbar-static-top.css" rel="stylesheet">
@@ -67,8 +72,16 @@
     <script src="external/leaflet-permalink/Permalink.Layer.js" ></script>
     <script src="external/leaflet-permalink/Permalink.Marker.js" ></script>
 
-    <!-- JQuery - downloaded from http://jquery.com/download -->
-    <script src="external/jquery/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript">
+    jQuery(document).ready(function() {
+        $([1, 2]).each(function() {
+            var id= this;
+            jQuery('#dialog' + id).dialog({
+                bgiframe: true, autoOpen: false, width: 650, modal: true
+            });
+        });
+    });
+    </script>
 
 </head>
 
@@ -99,6 +112,7 @@
                         <li class="divider"></li>
                         <li class="dropdown-header">Nav-Überschrift</li>
                         <li><a href="#">Abgetrennter Link</a></li-->
+                        <li><a href="#" onclick="jQuery('#dialog1').dialog('open'); return false">Deaktivierung Tracking-Cookie</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -106,7 +120,7 @@
                         Informationen<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="https://wiki.openstreetmap.org/wiki/DE:Briefkastenkarte" target="_blank">OpenStreetMap Wiki</a></li>
-                        <li><a href="index.html" target="_blank">Hilfe</a></li>
+                        <li><a href="#" onclick="jQuery('#dialog2').dialog('open'); return false">Hilfe</a></li>
                         <!--li class="divider"></li>
                         <li class="dropdown-header">Nav-Überschrift</li>
                         <li><a href="#">Abgetrennter Link</a></li-->
@@ -125,6 +139,14 @@
         <!--/.nav-collapse -->
     </div>
 </nav>
+
+<div id="dialog1" title="Deaktivierung Tracking-Cookie">
+    <p><small><iframe src="http://piwik.bretsch.net/index.php?module=CoreAdminHome&action=optOut&language=de" height="210" width="100%" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></small></p>
+</div>
+
+<div id="dialog2" title="Hilfe">
+    <p></p>
+</div>
 
 <div class="container">
     <div id="map"></div>
